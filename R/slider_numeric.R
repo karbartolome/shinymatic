@@ -1,10 +1,16 @@
-#' numeric_slider
+#' @title slider_numeric
+#' 
+#' @description Automatically genrates slider inputs for all numeric variables in a dataframe.
 #'
+#' @details Based on the numeric columns on a dataframe, this function generates all the slider inputs. 
+#'          The min/max value on the dataframe is the min/max value on the slider. 
+#'          
 #' @param .df Dataframe with N variables (one or more should be numeric)
 #'
-#' @return SliderInputs for all the numeric variables
+#' @return SliderInputs for all the numeric variables. 
+#' 
 #' @import shiny
-#' @export
+#' @export slider_numeric
 #'
 #' @examples
 #' library(shiny)
