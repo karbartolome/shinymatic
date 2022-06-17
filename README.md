@@ -1,5 +1,5 @@
 
-# shinydfinputs
+# shinymatic
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -12,7 +12,7 @@ You can install the development version of shinydfinputs from [GitHub](https://g
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("karbartolome/shinydfinputs")
+devtools::install_github("karbartolome/shinymatic")
 ```
 
 ## Example

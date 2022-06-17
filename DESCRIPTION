@@ -1,4 +1,4 @@
-Package: shinydfinputs
+Package: shinymatic
 Title: Generate shiny dashboard inputs based on dataframe
 Version: 0.0.1
 Authors@R: 

@@ -1,4 +1,4 @@
-#' @title slider_numeric
+#' @title autoinput_numerical
 #' 
 #' @description Automatically genrates slider inputs for all numeric variables in a dataframe.
 #'
@@ -10,7 +10,7 @@
 #' @return SliderInputs for all the numeric variables. 
 #' 
 #' @import shiny
-#' @export slider_numeric
+#' @export autoinput_numerical
 #'
 #' @examples
 #' library(shiny)
@@ -21,8 +21,8 @@
 #'   var_cat_1 = c('a','b','c'))
 #' 
 #' ui <- shiny::fluidPage(
-#'   shinydfinputs::slider_numeric(.df=df),
-#'   shiny::textOutput(outputId = 'values')
+#'   autoinput_numerical(.df=df),
+#'   textOutput(outputId = 'values')
 #' )
 #' 
 #' server <- function(input, output) {
@@ -35,7 +35,7 @@
 #' }
 #' 
 #' shiny::shinyApp(ui = ui, server = server)
-slider_numeric <- function(.df) {
+autoinput_numerical <- function(.df) {
   vars_num <- names(.df[,unlist(lapply(.df, is.numeric))])
   
   shiny::tagList(shiny::fluidRow(
