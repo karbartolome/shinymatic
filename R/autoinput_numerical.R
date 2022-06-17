@@ -37,7 +37,6 @@
 #' shiny::shinyApp(ui = ui, server = server)
 autoinput_numerical <- function(.df) {
   vars_num <- names(.df)[sapply(.df, is.numeric)]
-  print(vars_num)
   
   shiny::tagList(shiny::fluidRow(
     shiny::column(
