@@ -1,0 +1,18 @@
+Package: shinydfinputs
+Title: Generate shiny dashboard inputs based on dataframe
+Version: 0.0.1
+Authors@R: 
+      c(person(given = "Karina",
+             family = "Bartolome",
+             role = c("aut", "cre"),
+             email = "ejemplo@gmail.com"))
+Description: Extension of shiny. Allows the automatic generation of inputs
+             based on a dataframe. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: en-US
+RoxygenNote: 7.2.0
+Depends: 
+    R (>= 3.6.0)
+Imports: 
+    shiny
