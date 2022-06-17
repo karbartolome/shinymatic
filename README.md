@@ -1,10 +1,10 @@
-
 # shinymatic
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of shinymatic is to automatically generate shiny inputs based on a dataframe. 
+The goal of shinymatic is to automatically generate shiny inputs based on a dataframe.
 
 ## Installation
 
@@ -22,11 +22,8 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(shiny)
 library(shinymatic)
-df <- data.frame(
-  var_num_1 = c(1,2,3),
-  var_num_2 = c(6,5,4),
-  var_cat_1 = factor(c('a','b','c'))
-)
+df <- data.frame(Titanic)
+str(df)
 
 ui <- shiny::fluidPage(
   autoinput_numerical(.df=df),
@@ -46,11 +43,13 @@ server <- function(input, output) {
   
   output$cat_values <- reactive({
     vars_cat <- names(df)[sapply(df, is.factor)]
-    paste0(sapply(vars_cat, 
-                  FUN=function(i) paste(i,"=", input[[i]])), 
+    paste0(sapply(vars_cat,
+                  FUN=function(i) paste(i,"=", input[[i]])),
            collapse = ', ')
   })
 }
 
 shiny::shinyApp(ui = ui, server = server)
 ```
+
+![shiny_output](images/paste-452F4688.png)

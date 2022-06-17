@@ -37,6 +37,7 @@
 #' shiny::shinyApp(ui = ui, server = server)
 autoinput_numerical <- function(.df) {
   vars_num <- names(.df)[sapply(.df, is.numeric)]
+  print(vars_num)
   
   shiny::tagList(shiny::fluidRow(
     shiny::column(
@@ -47,10 +48,10 @@ autoinput_numerical <- function(.df) {
           shiny::sliderInput(
             inputId = vars_num[var],
             label = vars_num[var],
-            min = min(.df[, var]),
-            max = max(.df[, var]),
+            min = min(.df[, vars_num[var]], na.rm=TRUE),
+            max = max(.df[, vars_num[var]], na.rm=TRUE),
             step = 1,
-            value = .df[1, var]
+            value = mean(.df[, vars_num[var]], na.rm=TRUE)
           )
         }
       )
