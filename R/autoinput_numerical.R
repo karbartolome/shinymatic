@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' library(shiny)
-#' library(shinydfinputs)
+#' library(shinymatic)
 #' df <- data.frame(
 #'   var_num_1 = c(1,2,3),
 #'   var_num_2 = c(6,5,4),
