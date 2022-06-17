@@ -27,7 +27,7 @@
 #' 
 #' server <- function(input, output) {
 #'   output$values <- reactive({
-#'     vars_num <- names(df[,unlist(lapply(df, is.numeric))])
+#'     vars_num <- names(df)[sapply(df, is.numeric)]
 #'     paste0(sapply(vars_num, 
 #'                   FUN=function(i) paste(i,"=", input[[i]])), 
 #'            collapse = ', ')
@@ -36,7 +36,7 @@
 #' 
 #' shiny::shinyApp(ui = ui, server = server)
 autoinput_numerical <- function(.df) {
-  vars_num <- names(.df[,unlist(lapply(.df, is.numeric))])
+  vars_num <- names(.df)[sapply(.df, is.numeric)]
   
   shiny::tagList(shiny::fluidRow(
     shiny::column(

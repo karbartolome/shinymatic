@@ -21,7 +21,7 @@ Based on the numeric columns on a dataframe, this function generates all the sli
 }
 \examples{
 library(shiny)
-library(shinydfinputs)
+library(shinymatic)
 df <- data.frame(
   var_num_1 = c(1,2,3),
   var_num_2 = c(6,5,4),
@@ -34,7 +34,7 @@ ui <- shiny::fluidPage(
 
 server <- function(input, output) {
   output$values <- reactive({
-    vars_num <- names(df[,unlist(lapply(df, is.numeric))])
+    vars_num <- names(df)[sapply(df, is.numeric)]
     paste0(sapply(vars_num, 
                   FUN=function(i) paste(i,"=", input[[i]])), 
            collapse = ', ')
