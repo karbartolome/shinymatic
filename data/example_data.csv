@@ -1,0 +1,11 @@
+"id","birthdate","type","education","country","first_date","last_date","category","total"
+1,1993-02-08,"regular",1,"argentina",2022-02-01,2022-06-07,"high",3457
+2,1986-04-20,"regular",2,"argentina",2021-05-10,2022-05-10,"low",500
+3,1999-09-12,"regular",1,"uruguay",2022-02-19,2022-06-01,"high",10000
+4,1994-12-01,"lost",3,"brasil",2021-01-04,2021-09-10,"low",15
+5,1985-03-29,"lost",1,"argentina",2022-03-01,2022-03-01,"low",40
+6,1997-04-02,"regular",3,"argentina",2022-04-12,2022-06-17,"low",20
+7,1994-06-09,"regular",1,"argentina",2022-04-03,2022-06-04,"high",1000
+8,2001-05-20,"lost",1,"uruguay",2021-09-08,2022-01-02,"high",5000
+9,1996-03-02,"regular",3,"chile",2022-06-10,2022-06-01,"high",7000
+10,1992-05-19,"regular",2,"argentina",2022-05-01,2022-05-30,"low",10
