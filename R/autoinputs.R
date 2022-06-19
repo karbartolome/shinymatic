@@ -31,25 +31,18 @@
 #' shinyApp(ui = ui, server = server)
 #' }
 autoinputs <- function(.df){
-  
   vars_num <- names(.df)[sapply(.df, is.numeric)]
   vars_cat <- names(.df)[sapply(.df, is.factor)]
   vars_date <- names(.df)[sapply(.df, class) == "Date"]
-  
   df_inputs <- c() 
-  
   if (length(vars_num>0)){
     df_inputs = c(df_inputs, shinymatic::autoinput_numerical(.df=.df))
   }
-  
   if (length(vars_cat>0)){
     df_inputs = c(df_inputs, shinymatic::autoinput_categorical(.df=.df))
   }
-  
   if (length(vars_date>0)){
     df_inputs = c(df_inputs, shinymatic::autoinput_date(.df=.df))
   }
-  
   return(df_inputs)
-  
 }
