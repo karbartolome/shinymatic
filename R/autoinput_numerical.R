@@ -7,23 +7,19 @@
 #' @export autoinput_numerical
 #' @examples
 #' ## Only run this example in interactive R sessions
-#' #' if (interactive()) {
+#' if (interactive()) {
 #' library(shiny)
 #' library(shinymatic)
-#' df <- data.frame(
-#'   var_num_1 = c(1, 2, 3),
-#'   var_num_2 = c(6, 5, 4),
-#'   var_cat_1 = c('a', 'b', 'c')
-#' )
-#' ui <- shiny::fluidPage(
+#' load('data/customers.rda')
+#' ui <- fluidPage(
 #'   h3('UI (inputs)'),
-#'   autoinput_numerical(.df = df),
+#'   autoinput_numerical(.df = customers),
 #'   h3('Server (output)'),
 #'   verbatimTextOutput(outputId = 'values')
 #' )
 #' server <- function(input, output) {
 #'   output$values <- reactive({
-#'     vars_num <- names(df)[sapply(df, is.numeric)]
+#'     vars_num <- names(customers)[sapply(customers, is.numeric)]
 #'     paste0(sapply(
 #'       vars_num,
 #'       FUN = function(i)
@@ -32,7 +28,7 @@
 #'     collapse = '\n')
 #'   })
 #' }
-#' shiny::shinyApp(ui = ui, server = server)
+#' shinyApp(ui = ui, server = server)
 #' }
 autoinput_numerical <- function(.df) {
   vars_num <- names(.df)[sapply(.df, is.numeric)]
@@ -52,8 +48,8 @@ autoinput_numerical <- function(.df) {
             label = vars_num[var],
             min = min(.df[, vars_num[var]], na.rm=TRUE),
             max = max(.df[, vars_num[var]], na.rm=TRUE),
-            step = 1,
-            value = mean(.df[, vars_num[var]], na.rm=TRUE)
+            step = 1, round=TRUE,
+            value = round(mean(.df[, vars_num[var]], na.rm=TRUE),2)
           )
         }
       )

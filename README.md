@@ -32,21 +32,19 @@ library(shinymatic)
 Data:
 
 ``` r
-load('data/df.rda')
+load('data/customers.rda')
 ```
 
 Data structure:
 
-    ## 'data.frame':    10 obs. of  9 variables:
-    ##  $ id        : num  1 2 3 4 5 6 7 8 9 10
-    ##  $ birthdate : Date, format: "1993-02-08" "1986-04-20" ...
-    ##  $ type      : chr  "regular" "regular" "regular" "lost" ...
-    ##  $ education : Factor w/ 3 levels "1","2","3": 1 2 1 3 1 3 1 1 3 2
-    ##  $ country   : chr  "argentina" "argentina" "uruguay" "brasil" ...
-    ##  $ first_date: Date, format: "2022-02-01" "2021-05-10" ...
-    ##  $ last_date : Date, format: "2022-06-07" "2022-05-10" ...
-    ##  $ category  : Factor w/ 2 levels "high","low": 1 2 1 2 2 2 1 1 1 2
-    ##  $ total     : num  3457 500 10000 15 40 ...
+    ## 'data.frame':    20 obs. of  7 variables:
+    ##  $ birthdate : Date, format: "1999-07-28" "1976-06-26" ...
+    ##  $ country   : Factor w/ 4 levels "Argentina","Brasil",..: 3 1 3 4 3 2 2 3 3 4 ...
+    ##  $ category  : Factor w/ 3 levels "High","Low","Middle": 3 1 1 2 2 3 3 3 3 3 ...
+    ##  $ amount_tot: num  7765 123 8766 2453 5450 ...
+    ##  $ amount_avg: num  747 623 630 225 224 ...
+    ##  $ first_date: Date, format: "2021-06-30" "2021-02-23" ...
+    ##  $ last_date : Date, format: "2021-11-23" "2021-07-19" ...
 
 User interface that includes
 
@@ -55,9 +53,9 @@ ui <- shiny::fluidPage(fluidRow(
   h1('   A shiny inputs example'),
   column(3,
     h3('Inputs based on df'),
-    autoinput_numerical(.df = df),
-    autoinput_categorical(.df = df),
-    autoinput_date(.df = df)
+    autoinput_numerical(.df = customers),
+    autoinput_categorical(.df = customers),
+    autoinput_date(.df = customers)
   ),
   column(3,
     h3('Outputs based on inputs'),
@@ -73,7 +71,7 @@ input:
 server <- function(input, output) {
   output$values <- reactive({
     paste0(sapply(
-      names(df),
+      names(customers),
       FUN = function(i)
         paste(i, "=", input[[i]])
     ),
@@ -99,7 +97,7 @@ shinymatic::autoinputs()
 ui <- shiny::fluidPage(fluidRow(
  column(3,
         h3('Inputs based on df'),
-        autoinputs(.df=df)
+        autoinputs(.df=customers)
  ),
  column(3,
         h3('Outputs based on inputs'),
@@ -110,7 +108,7 @@ ui <- shiny::fluidPage(fluidRow(
 server <- function(input, output) {
  output$values <- reactive({
    paste0(sapply(
-     names(df),
+     names(customers),
      FUN = function(i) paste(i, "=", input[[i]])),
      collapse = '\n')
  })

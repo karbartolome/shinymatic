@@ -7,25 +7,19 @@
 #' @export autoinput_date
 #' @examples
 #' ## Only run this example in interactive R sessions
-#' #' if (interactive()) {
+#' if (interactive()) {
 #' library(shiny)
 #' library(shinymatic)
-#' df <- data.frame(
-#'   var_num_1 = c(1, 2, 3),
-#'   var_num_2 = c(6, 5, 4),
-#'   var_cat_1 = c('a', 'b', 'c'),
-#'   var_date_1 = as.Date(c('2022-01-01','2022-04-02','2022-05-10')),
-#'   var_date_2 = as.Date(c('2021-12-01','2022-03-02','2022-06-20'))
-#' )
-#' ui <- shiny::fluidPage(
+#' load('data/customers.rda')
+#' ui <- fluidPage(
 #'   h3('UI (inputs)'),
-#'   autoinput_date(.df = df),
+#'   autoinput_date(.df = customers),
 #'   h3('Server (output)'),
 #'   verbatimTextOutput(outputId = 'values')
 #' )
 #' server <- function(input, output) {
 #'   output$values <- reactive({
-#'     vars_num <- names(df)[sapply(df, class) == "Date"]
+#'     vars_num <- names(customers)[sapply(customers, class) == "Date"]
 #'     paste0(sapply(
 #'       vars_num,
 #'       FUN = function(i)
@@ -34,7 +28,7 @@
 #'     collapse = '\n')
 #'   })
 #' }
-#' shiny::shinyApp(ui = ui, server = server)
+#' shinyApp(ui = ui, server = server)
 #' }
 autoinput_date <- function(.df) {
   vars_date <- names(.df)[sapply(.df, class) == "Date"]

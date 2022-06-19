@@ -21,23 +21,19 @@ Based on the numeric columns on a dataframe, this function generates all the sli
 }
 \examples{
 ## Only run this example in interactive R sessions
-#' if (interactive()) {
+if (interactive()) {
 library(shiny)
 library(shinymatic)
-df <- data.frame(
-  var_num_1 = c(1, 2, 3),
-  var_num_2 = c(6, 5, 4),
-  var_cat_1 = c('a', 'b', 'c')
-)
-ui <- shiny::fluidPage(
+load('data/customers.rda')
+ui <- fluidPage(
   h3('UI (inputs)'),
-  autoinput_numerical(.df = df),
+  autoinput_numerical(.df = customers),
   h3('Server (output)'),
   verbatimTextOutput(outputId = 'values')
 )
 server <- function(input, output) {
   output$values <- reactive({
-    vars_num <- names(df)[sapply(df, is.numeric)]
+    vars_num <- names(customers)[sapply(customers, is.numeric)]
     paste0(sapply(
       vars_num,
       FUN = function(i)
@@ -46,6 +42,6 @@ server <- function(input, output) {
     collapse = '\n')
   })
 }
-shiny::shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server)
 }
 }
