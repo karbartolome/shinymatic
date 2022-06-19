@@ -1,7 +1,7 @@
 
 # shinymatic <img src="man/figures/logo.png" width="175" height="200" align="right"/>
 
-![Progress](https://progress-bar.dev/25/)
+![Progress](https://progress-bar.dev/30/)
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -30,6 +30,10 @@ library(dplyr)
 ```
 
 Data:
+
+``` r
+load('data/df.rda')
+```
 
 Data structure:
 

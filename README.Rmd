@@ -8,7 +8,7 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 
 # shinymatic <img src="man/figures/logo.png" width="175" height="200" align="right"/>
 
-![Progress](https://progress-bar.dev/25/)
+![Progress](https://progress-bar.dev/30/)
 
 <!-- badges: start -->
 
@@ -37,7 +37,7 @@ library(dplyr)
 
 Data:
 
-```{r, echo=FALSE}
+```{r}
 load('data/df.rda')
 ```
 
