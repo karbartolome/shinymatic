@@ -1,0 +1,56 @@
+---
+title: "Inputs for multiple data types"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{inputs-multi-data-types}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shiny)
+library(shinymatic)
+```
+
+```{r}
+customers <- customers_data(100)
+```
+
+
+All the inputs can be generated with a single function: shinymatic::autoinputs()
+
+```{r, eval=FALSE}
+ui <- shiny::fluidPage(fluidRow(
+ column(3,
+        h3('Inputs based on df'),
+        autoinputs(.df=customers)
+ ),
+ column(3,
+        h3('Outputs based on inputs'),
+        verbatimTextOutput(outputId = 'values')
+ )
+))
+
+server <- function(input, output) {
+ output$values <- reactive({
+   paste0(sapply(
+     names(customers),
+     FUN = function(i) paste(i, "=", input[[i]])),
+     collapse = '\n')
+ })
+}
+
+shiny::shinyApp(ui = ui, server = server)
+```
+
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('figures/autoinputs.png')
+```
+

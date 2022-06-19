@@ -1,0 +1,8 @@
+pandoc: '2.18'
+pkgdown: 2.0.4
+pkgdown_sha: ~
+articles:
+  inputs-data-types: inputs-data-types.html
+  inputs-multi-data-types: inputs-multi-data-types.html
+last_built: 2022-06-19T21:45Z
+
