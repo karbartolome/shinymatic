@@ -20,5 +20,32 @@ Based on the factor columns on a dataframe, this function generates all the sele
          The possible values correspond to the levels in each factor column.
 }
 \examples{
-print('anda')
+## Only run this example in interactive R sessions
+if (interactive()) {
+library(shiny)
+library(shinymatic)
+df <- data.frame(
+  var_num_1 = c(1, 2, 3),
+  var_num_2 = c(6, 5, 4),
+  var_cat_1 = factor(c('a', 'b', 'c'))
+)
+ui <- shiny::fluidPage(
+  h3('UI (inputs)'),
+  autoinput_categorical(.df = df),
+  h3('Server (output)'),
+  verbatimTextOutput(outputId = 'values')
+)
+server <- function(input, output) {
+  output$values <- reactive({
+    vars_cat <- names(df)[sapply(df, is.factor)]
+    paste0(sapply(
+      vars_cat,
+      FUN = function(i)
+        paste(i, "=", input[[i]])
+    ),
+    collapse = '\n')
+  })
+}
+shiny::shinyApp(ui = ui, server = server)
+}
 }
