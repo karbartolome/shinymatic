@@ -1,26 +1,18 @@
 library(hexSticker)
-library(desc)
 library(showtext)
-## Loading Google fonts (http://www.google.com/fonts)
 font_add_google("Sacramento", "shinymatic_font")
-font_add_google("Fredericka the Great", "shinymatic_font")
-font_add_google("Quantico", "shinymatic_font")
-
-## Automatically use showtext to render text for future devices
-showtext_auto()
-
 sticker("images/icon.png",	
         package = 'shinymatic',
         p_color = 'white',
         p_size = 150,
         p_family = 'shinymatic_font', 
-        h_fill = "#636d80",# '#480a8a',
+        h_fill = "#34294d", "#4f4d63",
         h_color = 'white', 
-        s_width=0.55,
+        s_width=0.7,
         s_x = 1,
-        s_y = 0.75,
+        s_y = 0.9,
         dpi=2000,
-        filename = "sticker.png")
+        filename = "man/figures/logo.png")
 
 usethis::use_build_ignore(
   c("images/icon.png", "sticker.R", "sticker.png"))
