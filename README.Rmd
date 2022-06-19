@@ -38,9 +38,7 @@ library(dplyr)
 Data:
 
 ```{r, echo=FALSE}
-df <- readr::read_csv('data/example_data.csv') %>% 
-  data.frame() %>% 
-  mutate(across(c('education', 'category'), factor))
+load('data/df.rda')
 ```
 
 Data structure:
