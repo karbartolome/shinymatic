@@ -8,9 +8,9 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 
 # shinymatic <img src="man/figures/logo.png" width="175" height="200" align="right"/>
 
-![Progress](https://progress-bar.dev/30/)
-
 <!-- badges: start -->
+
+![Progress](https://progress-bar.dev/30/)
 
 <!-- badges: end -->
 
@@ -32,7 +32,6 @@ This is a basic example which shows you how to solve a common problem:
 ```{r}
 library(shiny)
 library(shinymatic)
-library(dplyr)
 ```
 
 Data:
@@ -60,7 +59,8 @@ ui <- shiny::fluidPage(fluidRow(
   ),
   column(3,
     h3('Outputs based on inputs'),
-    verbatimTextOutput(outputId = 'cat_values'))
+    verbatimTextOutput(outputId = 'values')
+  )
 ))
 ```
 
@@ -68,10 +68,13 @@ Server that generates the reactive output based on each individual input:
 
 ```{r}
 server <- function(input, output) {
-  output$cat_values <- reactive({
-    paste0(sapply(names(df),
-                  FUN=function(i) paste(i,"=", input[[i]])),
-           collapse = '\n')
+  output$values <- reactive({
+    paste0(sapply(
+      names(df),
+      FUN = function(i)
+        paste(i, "=", input[[i]])
+    ),
+    collapse = '\n')
   })
 }
 ```
@@ -85,4 +88,42 @@ shiny::shinyApp(ui = ui, server = server)
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
 knitr::include_graphics('man/figures/shiny_example.png')
 ```
+
+# Autoinputs for multiple data types all at once
+
+All the inputs can be generated with a single function: shinymatic::autoinputs()
+
+```{r, eval=FALSE}
+ui <- shiny::fluidPage(fluidRow(
+ column(3,
+        h3('Inputs based on df'),
+        autoinputs(.df=df)
+ ),
+ column(3,
+        h3('Outputs based on inputs'),
+        verbatimTextOutput(outputId = 'values')
+ )
+))
+
+server <- function(input, output) {
+ output$values <- reactive({
+   paste0(sapply(
+     names(df),
+     FUN = function(i) paste(i, "=", input[[i]])),
+     collapse = '\n')
+ })
+}
+
+shiny::shinyApp(ui = ui, server = server)
+```
+
+
+
+
+
+
+
+
+
+
 
