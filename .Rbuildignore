@@ -3,5 +3,5 @@
 ^LICENSE\.md$
 ^icon\.png$
 ^sticker\.R$
-^sticker\.png$
-^images/icon\.png$
+^man\figures\icon\.png$
+^README\.Rmd$
