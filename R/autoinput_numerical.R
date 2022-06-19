@@ -1,42 +1,46 @@
 #' @title autoinput_numerical
-#' 
 #' @description Automatically genrates slider inputs for all numeric variables in a dataframe.
-#'
 #' @details Based on the numeric columns on a dataframe, this function generates all the slider inputs. 
 #'          The min/max value on the dataframe is the min/max value on the slider. 
-#'          
 #' @param .df Dataframe with N variables (one or more should be numeric)
-#'
 #' @return SliderInputs for all the numeric variables. 
-#' 
 #' @import shiny
 #' @export autoinput_numerical
-#'
 #' @examples
+#' ## Only run this example in interactive R sessions
+#' #' if (interactive()) {
 #' library(shiny)
 #' library(shinymatic)
 #' df <- data.frame(
-#'   var_num_1 = c(1,2,3),
-#'   var_num_2 = c(6,5,4),
-#'   var_cat_1 = c('a','b','c'))
-#' 
-#' ui <- shiny::fluidPage(
-#'   autoinput_numerical(.df=df),
-#'   textOutput(outputId = 'values')
+#'   var_num_1 = c(1, 2, 3),
+#'   var_num_2 = c(6, 5, 4),
+#'   var_cat_1 = c('a', 'b', 'c')
 #' )
-#' 
+#' ui <- shiny::fluidPage(
+#'   h3('UI (inputs)'),
+#'   autoinput_numerical(.df = df),
+#'   h3('Server (output)'),
+#'   verbatimTextOutput(outputId = 'values')
+#' )
 #' server <- function(input, output) {
 #'   output$values <- reactive({
 #'     vars_num <- names(df)[sapply(df, is.numeric)]
-#'     paste0(sapply(vars_num, 
-#'                   FUN=function(i) paste(i,"=", input[[i]])), 
-#'            collapse = ', ')
+#'     paste0(sapply(
+#'       vars_num,
+#'       FUN = function(i)
+#'         paste(i, "=", input[[i]])
+#'     ),
+#'     collapse = '\n')
 #'   })
 #' }
-#' 
 #' shiny::shinyApp(ui = ui, server = server)
+#' }
 autoinput_numerical <- function(.df) {
   vars_num <- names(.df)[sapply(.df, is.numeric)]
+  
+  if (length(vars_num)==0){
+    message('There are no numeric columns in the dataframe')
+  }
   
   shiny::tagList(shiny::fluidRow(
     shiny::column(
