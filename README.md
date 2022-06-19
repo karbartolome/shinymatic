@@ -1,5 +1,7 @@
 # shinymatic <img src="man/figures/logo.png" width = "175" height = "200" align="right" />
 
+![Progress](https://progress-bar.dev/25/)
+
 <!-- badges: start -->
 
 <!-- badges: end -->
