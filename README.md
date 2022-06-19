@@ -1,4 +1,4 @@
-# shinymatic
+# shinymatic <img src="man/figures/logo.png" width = "175" height = "200" align="right" />
 
 <!-- badges: start -->
 
