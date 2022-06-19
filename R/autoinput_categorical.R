@@ -4,7 +4,6 @@
 #'          The possible values correspond to the levels in each factor column. 
 #' @param .df Dataframe with N variables (one or more should be factor)
 #' @return Select input for categorical variables 
-#' @import shiny
 #' @export autoinput_categorical
 #' @examples
 #' ## Only run this example in interactive R sessions

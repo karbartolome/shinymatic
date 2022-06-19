@@ -4,7 +4,6 @@
 #'          The min/max value on the dataframe is the min/max value on the date input.  
 #' @param .df Dataframe with N variables (one or more should be date)
 #' @return dateInput() for all the date variables. 
-#' @import shiny
 #' @export autoinput_date
 #' @examples
 #' ## Only run this example in interactive R sessions
