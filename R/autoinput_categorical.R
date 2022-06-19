@@ -1,15 +1,9 @@
 #' @title autoinput_categorical
-#' 
 #' @description Automatically genrates select inputs for all factor columns in a dataframe.
-#'
 #' @details Based on the factor columns on a dataframe, this function generates all the select inputs. 
 #'          The possible values correspond to the levels in each factor column. 
-#'          
 #' @param .df Dataframe with N variables (one or more should be factor)
-#'
 #' @return Select input for categorical variables 
-#' 
-#' @import shiny
 #' @export autoinput_categorical
 #' @examples
 #' ## Only run this example in interactive R sessions

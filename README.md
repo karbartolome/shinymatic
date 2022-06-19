@@ -1,9 +1,10 @@
 
 # shinymatic <img src="man/figures/logo.png" width="175" height="200" align="right"/>
 
-![Progress](https://progress-bar.dev/25/)
-
 <!-- badges: start -->
+
+![Progress](https://progress-bar.dev/30/)
+
 <!-- badges: end -->
 
 The goal of shinymatic is to automatically generate shiny inputs based
@@ -26,10 +27,13 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(shiny)
 library(shinymatic)
-library(dplyr)
 ```
 
 Data:
+
+``` r
+load('data/df.rda')
+```
 
 Data structure:
 
@@ -57,7 +61,8 @@ ui <- shiny::fluidPage(fluidRow(
   ),
   column(3,
     h3('Outputs based on inputs'),
-    verbatimTextOutput(outputId = 'cat_values'))
+    verbatimTextOutput(outputId = 'values')
+  )
 ))
 ```
 
@@ -66,10 +71,13 @@ input:
 
 ``` r
 server <- function(input, output) {
-  output$cat_values <- reactive({
-    paste0(sapply(names(df),
-                  FUN=function(i) paste(i,"=", input[[i]])),
-           collapse = '\n')
+  output$values <- reactive({
+    paste0(sapply(
+      names(df),
+      FUN = function(i)
+        paste(i, "=", input[[i]])
+    ),
+    collapse = '\n')
   })
 }
 ```
@@ -81,3 +89,32 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 <img src="man/figures/shiny_example.png" width="70%" style="display: block; margin: auto;" />
+
+# Autoinputs for multiple data types all at once
+
+All the inputs can be generated with a single function:
+shinymatic::autoinputs()
+
+``` r
+ui <- shiny::fluidPage(fluidRow(
+ column(3,
+        h3('Inputs based on df'),
+        autoinputs(.df=df)
+ ),
+ column(3,
+        h3('Outputs based on inputs'),
+        verbatimTextOutput(outputId = 'values')
+ )
+))
+
+server <- function(input, output) {
+ output$values <- reactive({
+   paste0(sapply(
+     names(df),
+     FUN = function(i) paste(i, "=", input[[i]])),
+     collapse = '\n')
+ })
+}
+
+shiny::shinyApp(ui = ui, server = server)
+```

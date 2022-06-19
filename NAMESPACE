@@ -3,4 +3,4 @@
 export(autoinput_categorical)
 export(autoinput_date)
 export(autoinput_numerical)
-import(shiny)
+export(autoinputs)

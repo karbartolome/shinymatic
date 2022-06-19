@@ -1,7 +1,6 @@
 ^shinymatic\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^icon\.png$
 ^sticker\.R$
-^man\figures\icon\.png$
 ^README\.Rmd$
+^man/figure/icon\.png$

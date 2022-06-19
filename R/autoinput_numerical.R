@@ -4,7 +4,6 @@
 #'          The min/max value on the dataframe is the min/max value on the slider. 
 #' @param .df Dataframe with N variables (one or more should be numeric)
 #' @return SliderInputs for all the numeric variables. 
-#' @import shiny
 #' @export autoinput_numerical
 #' @examples
 #' ## Only run this example in interactive R sessions
