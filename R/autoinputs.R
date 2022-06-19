@@ -2,34 +2,33 @@
 #' @description Automatically genrates inputs for all variables in a dataframe.
 #' @details Based on the columns on a dataframe, this function generates all the inputs. 
 #' @param .df Dataframe with N variables (date, factor or numeric types are supported)
-#' @return dateInput() for all the date variables. 
+#' @return Input buttons for all variables. 
 #' @export autoinputs
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {
-#' load('data/df.rda')
-#' 
-#' ui <- shiny::fluidPage(fluidRow(
+#' library(shiny)
+#' library(shinymatic)
+#' load('data/customers.rda')
+#' ui <- fluidPage(fluidRow(
 #'   column(3,
 #'          h3('Inputs based on df'),
-#'          autoinputs(.df=df)
+#'          autoinputs(.df=customers)
 #'   ),
 #'   column(3,
 #'          h3('Outputs based on inputs'),
 #'          verbatimTextOutput(outputId = 'values')
 #'   )
 #' ))
-#' 
 #' server <- function(input, output) {
 #'   output$values <- reactive({
 #'     paste0(sapply(
-#'       names(df),
+#'       names(customers),
 #'       FUN = function(i) paste(i, "=", input[[i]])),
 #'       collapse = '\n')
 #'   })
 #' }
-#' 
-#' shiny::shinyApp(ui = ui, server = server)
+#' shinyApp(ui = ui, server = server)
 #' }
 autoinputs <- function(.df){
   
@@ -40,15 +39,15 @@ autoinputs <- function(.df){
   df_inputs <- c() 
   
   if (length(vars_num>0)){
-    df_inputs = c(df_inputs, shinymatic::autoinput_numerical(.df=df))
+    df_inputs = c(df_inputs, shinymatic::autoinput_numerical(.df=.df))
   }
   
   if (length(vars_cat>0)){
-    df_inputs = c(df_inputs, shinymatic::autoinput_categorical(.df=df))
+    df_inputs = c(df_inputs, shinymatic::autoinput_categorical(.df=.df))
   }
   
   if (length(vars_date>0)){
-    df_inputs = c(df_inputs, shinymatic::autoinput_date(.df=df))
+    df_inputs = c(df_inputs, shinymatic::autoinput_date(.df=.df))
   }
   
   return(df_inputs)

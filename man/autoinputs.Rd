@@ -10,7 +10,7 @@ autoinputs(.df)
 \item{.df}{Dataframe with N variables (date, factor or numeric types are supported)}
 }
 \value{
-dateInput() for all the date variables.
+Input buttons for all variables.
 }
 \description{
 Automatically genrates inputs for all variables in a dataframe.
@@ -21,28 +21,27 @@ Based on the columns on a dataframe, this function generates all the inputs.
 \examples{
 ## Only run this example in interactive R sessions
 if (interactive()) {
-load('data/df.rda')
-
-ui <- shiny::fluidPage(fluidRow(
+library(shiny)
+library(shinymatic)
+load('data/customers.rda')
+ui <- fluidPage(fluidRow(
   column(3,
          h3('Inputs based on df'),
-         autoinputs(.df=df)
+         autoinputs(.df=customers)
   ),
   column(3,
          h3('Outputs based on inputs'),
          verbatimTextOutput(outputId = 'values')
   )
 ))
-
 server <- function(input, output) {
   output$values <- reactive({
     paste0(sapply(
-      names(df),
+      names(customers),
       FUN = function(i) paste(i, "=", input[[i]])),
       collapse = '\n')
   })
 }
-
-shiny::shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server)
 }
 }

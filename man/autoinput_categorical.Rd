@@ -24,20 +24,16 @@ Based on the factor columns on a dataframe, this function generates all the sele
 if (interactive()) {
 library(shiny)
 library(shinymatic)
-df <- data.frame(
-  var_num_1 = c(1, 2, 3),
-  var_num_2 = c(6, 5, 4),
-  var_cat_1 = factor(c('a', 'b', 'c'))
-)
-ui <- shiny::fluidPage(
+load('data/customers.rda')
+ui <- fluidPage(
   h3('UI (inputs)'),
-  autoinput_categorical(.df = df),
+  autoinput_categorical(.df = customers),
   h3('Server (output)'),
   verbatimTextOutput(outputId = 'values')
 )
 server <- function(input, output) {
   output$values <- reactive({
-    vars_cat <- names(df)[sapply(df, is.factor)]
+    vars_cat <- names(customers)[sapply(customers, is.factor)]
     paste0(sapply(
       vars_cat,
       FUN = function(i)
@@ -46,6 +42,6 @@ server <- function(input, output) {
     collapse = '\n')
   })
 }
-shiny::shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server)
 }
 }

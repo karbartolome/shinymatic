@@ -37,13 +37,13 @@ library(shinymatic)
 Data:
 
 ```{r}
-load('data/df.rda')
+load('data/customers.rda')
 ```
 
 Data structure:
 
 ```{r, echo=FALSE}
-str(df)
+str(customers)
 ```
 
 User interface that includes
@@ -53,9 +53,9 @@ ui <- shiny::fluidPage(fluidRow(
   h1('   A shiny inputs example'),
   column(3,
     h3('Inputs based on df'),
-    autoinput_numerical(.df = df),
-    autoinput_categorical(.df = df),
-    autoinput_date(.df = df)
+    autoinput_numerical(.df = customers),
+    autoinput_categorical(.df = customers),
+    autoinput_date(.df = customers)
   ),
   column(3,
     h3('Outputs based on inputs'),
@@ -70,7 +70,7 @@ Server that generates the reactive output based on each individual input:
 server <- function(input, output) {
   output$values <- reactive({
     paste0(sapply(
-      names(df),
+      names(customers),
       FUN = function(i)
         paste(i, "=", input[[i]])
     ),
@@ -97,7 +97,7 @@ All the inputs can be generated with a single function: shinymatic::autoinputs()
 ui <- shiny::fluidPage(fluidRow(
  column(3,
         h3('Inputs based on df'),
-        autoinputs(.df=df)
+        autoinputs(.df=customers)
  ),
  column(3,
         h3('Outputs based on inputs'),
@@ -108,7 +108,7 @@ ui <- shiny::fluidPage(fluidRow(
 server <- function(input, output) {
  output$values <- reactive({
    paste0(sapply(
-     names(df),
+     names(customers),
      FUN = function(i) paste(i, "=", input[[i]])),
      collapse = '\n')
  })
