@@ -3,8 +3,8 @@
 
 <!-- badges: start -->
 
-![Progress](https://progress-bar.dev/40/)
-
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of **{shinymatic}** :package: is to automatically generate
