@@ -96,7 +96,7 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
-knitr::include_graphics('man/figures/shiny_example.png')
+knitr::include_graphics('vignettes/figures/autoinputs.png')
 ```
 
 # Autoinputs for multiple data types all at once
@@ -128,7 +128,7 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
-knitr::include_graphics('man/figures/shiny_example.png')
+knitr::include_graphics('vignettes/figures/autoinputs.png')
 ```
 
 # **Additional comments**

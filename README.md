@@ -103,7 +103,7 @@ Shiny app is generated based on the ui and server:
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-<img src="man/figures/shiny_example.png" width="70%" style="display: block; margin: auto;" />
+<img src="vignettes/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
 
 # Autoinputs for multiple data types all at once
 
@@ -134,7 +134,7 @@ server <- function(input, output) {
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-<img src="man/figures/shiny_example.png" width="70%" style="display: block; margin: auto;" />
+<img src="vignettes/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
 
 # **Additional comments**
 
