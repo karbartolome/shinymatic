@@ -30,7 +30,7 @@
 #' }
 #' shinyApp(ui = ui, server = server)
 #' }
-autoinput_numerical <- function(.df) {
+autoinput_numerical <- function(.df, .dec_places = 0) {
   vars_num <- names(.df)[sapply(.df, is.numeric)]
   
   if (length(vars_num)==0){
@@ -46,10 +46,11 @@ autoinput_numerical <- function(.df) {
           shiny::sliderInput(
             inputId = vars_num[var],
             label = vars_num[var],
-            min = min(.df[, vars_num[var]], na.rm=TRUE),
-            max = max(.df[, vars_num[var]], na.rm=TRUE),
-            step = 1, round=TRUE,
-            value = round(mean(.df[, vars_num[var]], na.rm=TRUE),2)
+            min = round(min(.df[, vars_num[var]], na.rm=TRUE),.dec_places),
+            max = round(max(.df[, vars_num[var]], na.rm=TRUE),.dec_places),
+            step = 1, 
+            round=TRUE,
+            value = round(mean(.df[, vars_num[var]], na.rm=TRUE),.dec_places)
           )
         }
       )
