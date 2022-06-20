@@ -4,7 +4,7 @@
 \alias{autoinput_numerical}
 \title{autoinput_numerical}
 \usage{
-autoinput_numerical(.df)
+autoinput_numerical(.df, .dec_places = 0)
 }
 \arguments{
 \item{.df}{Dataframe with N variables (one or more should be numeric)}

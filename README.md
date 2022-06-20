@@ -3,16 +3,16 @@
 
 <!-- badges: start -->
 
-![Progress](https://progress-bar.dev/30/)
+![Progress](https://progress-bar.dev/40/)
 
 <!-- badges: end -->
 
-The goal of shinymatic is to automatically generate shiny inputs based
-on a dataframe.
+The goal of **{shinymatic}** :package: is to automatically generate
+shiny inputs based on a dataframe.
 
 ## Installation
 
-You can install the development version of shinymatic from
+You can install the development version of **{shinymatic}** from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -29,13 +29,16 @@ library(shiny)
 library(shinymatic)
 ```
 
-Data
+For this example, **random customer data** is used. This dataset is
+included in the package, together with the shinymatic::customers_data()
+function used to generate the data frame for a number of observations.
 
 ``` r
 df <- shinymatic::customers
 ```
 
-Data structure:
+**Data structure:** the data frame includes numeric, factor and date
+variables.
 
     ## 'data.frame':    20 obs. of  7 variables:
     ##  $ birthdate : Date, format: "1999-07-28" "1976-06-26" ...
@@ -46,11 +49,24 @@ Data structure:
     ##  $ first_date: Date, format: "2021-06-30" "2021-02-23" ...
     ##  $ last_date : Date, format: "2021-11-23" "2021-07-19" ...
 
-User interface that includes
+A user interface (UI) is generated. This is a UI for a simple example.
+It includes 2 columns:
+
+\- Column 1: Inputs generated based on the variables of the dataframe
+
+-   **shinymatic::autoinput_numerical()**: generates the numerical
+    inputs
+
+-   **shinymatic::autoinput_categorical()**: generates the categorical
+    inputs
+
+-   **shinymatic::autoinput_date()**: generates the date inputs
+
+\- Column 2: Text output for the values selected
 
 ``` r
 ui <- shiny::fluidPage(fluidRow(
-  h1('   A shiny inputs example'),
+  h1('A shiny inputs example'),
   column(3,
     h3('Inputs based on df'),
     autoinput_numerical(.df = df),
@@ -92,7 +108,7 @@ shiny::shinyApp(ui = ui, server = server)
 # Autoinputs for multiple data types all at once
 
 All the inputs can be generated with a single function:
-shinymatic::autoinputs()
+**shinymatic::autoinputs()**
 
 ``` r
 ui <- shiny::fluidPage(fluidRow(
@@ -119,3 +135,10 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 <img src="man/figures/shiny_example.png" width="70%" style="display: block; margin: auto;" />
+
+# **Additional comments**
+
+The package idea was influenced by this stackoverflow question: [Shiny
+Modules: Handling a list of
+buttons](https://stackoverflow.com/questions/40038749/r-shiny-how-to-write-loop-for-observeevent).
+All feedback is welcomed!
