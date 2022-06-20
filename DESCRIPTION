@@ -23,3 +23,5 @@ Suggests:
 Config/testthat/edition: 3
 LazyData: true
 VignetteBuilder: knitr
+URL: https://github.com/karbartolome/shinymatic
+BugReports: https://github.com/karbartolome/shinymatic/issues
