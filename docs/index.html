@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generate shiny dashboard inputs based on dataframe • shinymatic</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -78,14 +84,14 @@
 </h1></div>
 <!-- badges: start -->
 <div class="figure">
-<img src="https://progress-bar.dev/30/" alt=""><p class="caption">Progress</p>
+<img src="https://progress-bar.dev/40/" alt=""><p class="caption">Progress</p>
 </div>
 <!-- badges: end -->
-<p>The goal of shinymatic is to automatically generate shiny inputs based on a dataframe.</p>
+<p>The goal of <strong>{shinymatic}</strong> <span class="emoji" data-emoji="package">📦</span> is to automatically generate shiny inputs based on a dataframe.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of shinymatic from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of <strong>{shinymatic}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"karbartolome/shinymatic"</span><span class="op">)</span></code></pre></div>
@@ -97,10 +103,10 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinymatic</span><span class="op">)</span></code></pre></div>
-<p>Data</p>
+<p>For this example, <strong>random customer data</strong> is used. This dataset is included in the package, together with the shinymatic::customers_data() function used to generate the data frame for a number of observations.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">shinymatic</span><span class="fu">::</span><span class="va"><a href="reference/customers.html">customers</a></span></code></pre></div>
-<p>Data structure:</p>
+<p><strong>Data structure:</strong> the data frame includes numeric, factor and date variables.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 'data.frame':    20 obs. of  7 variables:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ birthdate : Date, format: "1999-07-28" "1976-06-26" ...</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ country   : Factor w/ 4 levels "Argentina","Brasil",..: 3 1 3 4 3 2 2 3 3 4 ...</span></span>
@@ -109,10 +115,17 @@
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ amount_avg: num  747 623 630 225 224 ...</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ first_date: Date, format: "2021-06-30" "2021-02-23" ...</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ last_date : Date, format: "2021-11-23" "2021-07-19" ...</span></span></code></pre></div>
-<p>User interface that includes</p>
+<p>A user interface (UI) is generated. This is a UI for a simple example. It includes 2 columns:</p>
+<p>- Column 1: Inputs generated based on the variables of the dataframe</p>
+<ul>
+<li><p><strong>shinymatic::autoinput_numerical()</strong>: generates the numerical inputs</p></li>
+<li><p><strong>shinymatic::autoinput_categorical()</strong>: generates the categorical inputs</p></li>
+<li><p><strong>shinymatic::autoinput_date()</strong>: generates the date inputs</p></li>
+</ul>
+<p>- Column 2: Text output for the values selected</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">'   A shiny inputs example'</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">'A shiny inputs example'</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>,
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h3</a></span><span class="op">(</span><span class="st">'Inputs based on df'</span><span class="op">)</span>,
     <span class="fu"><a href="reference/autoinput_numerical.html">autoinput_numerical</a></span><span class="op">(</span>.df <span class="op">=</span> <span class="va">df</span><span class="op">)</span>,
@@ -145,7 +158,7 @@
 <div class="section level1">
 <h1 id="autoinputs-for-multiple-data-types-all-at-once">Autoinputs for multiple data types all at once<a class="anchor" aria-label="anchor" href="#autoinputs-for-multiple-data-types-all-at-once"></a>
 </h1>
-<p>All the inputs can be generated with a single function: shinymatic::autoinputs()</p>
+<p>All the inputs can be generated with a single function: <strong>shinymatic::autoinputs()</strong></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span>
  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>,
@@ -169,6 +182,12 @@
 
 <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/shiny_example.png" width="70%" style="display: block; margin: auto;"></p>
+</div>
+<div class="section level1">
+<h1 id="additional-comments">
+<strong>Additional comments</strong><a class="anchor" aria-label="anchor" href="#additional-comments"></a>
+</h1>
+<p>The package idea was influenced by this stackoverflow question: <a href="https://stackoverflow.com/questions/40038749/r-shiny-how-to-write-loop-for-observeevent" class="external-link">Shiny Modules: Handling a list of buttons</a>. All feedback is welcomed!</p>
 </div>
 
   </div>

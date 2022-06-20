@@ -5,7 +5,7 @@
 \alias{customers}
 \title{Customers: a random dataframe with columns of different types}
 \format{
-A data frame with 10 rows and 9 variables:
+A data frame with 20 rows and 9 variables:
 \describe{
   \item{birthdate}{Birth date of the customer}
   \item{country}{Country of the customer}
