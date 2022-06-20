@@ -4,3 +4,5 @@
 ^sticker\.R$
 ^README\.Rmd$
 ^man/figure/icon\.png$
+^_pkgdown\.yml$
+^docs

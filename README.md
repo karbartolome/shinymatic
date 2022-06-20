@@ -22,17 +22,17 @@ devtools::install_github("karbartolome/shinymatic")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common problem.
 
 ``` r
 library(shiny)
 library(shinymatic)
 ```
 
-Data:
+Data
 
 ``` r
-load('data/customers.rda')
+df <- shinymatic::customers
 ```
 
 Data structure:
@@ -53,9 +53,9 @@ ui <- shiny::fluidPage(fluidRow(
   h1('   A shiny inputs example'),
   column(3,
     h3('Inputs based on df'),
-    autoinput_numerical(.df = customers),
-    autoinput_categorical(.df = customers),
-    autoinput_date(.df = customers)
+    autoinput_numerical(.df = df),
+    autoinput_categorical(.df = df),
+    autoinput_date(.df = df)
   ),
   column(3,
     h3('Outputs based on inputs'),
@@ -65,13 +65,14 @@ ui <- shiny::fluidPage(fluidRow(
 ```
 
 Server that generates the reactive output based on each individual
-input:
+input. This is an example to show how the input values can be selected
+by input id. These values could be used as parameters of an API call.
 
 ``` r
 server <- function(input, output) {
   output$values <- reactive({
     paste0(sapply(
-      names(customers),
+      names(df),
       FUN = function(i)
         paste(i, "=", input[[i]])
     ),
@@ -116,3 +117,5 @@ server <- function(input, output) {
 
 shiny::shinyApp(ui = ui, server = server)
 ```
+
+<img src="man/figures/shiny_example.png" width="70%" style="display: block; margin: auto;" />
