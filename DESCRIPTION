@@ -4,7 +4,8 @@ Version: 0.0.0.9000
 Authors@R: 
       c(person(given = "Karina",
              family = "Bartolome",
-             role = c("aut", "cre")))
+             role = c("aut", "cre"),
+             email = "ejemplo@gmail.com"))
 Description: Extension of shiny. Allows the automatic generation of inputs
              based on a dataframe. 
 License: MIT + file LICENSE
@@ -12,7 +13,7 @@ Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.2.0
 Depends: 
-    R (>= 4.0.0)
+    R (>= 3.6.0)
 Imports: 
     shiny
 Suggests: 
@@ -23,3 +24,4 @@ LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/karbartolome/shinymatic
 BugReports: https://github.com/karbartolome/shinymatic/issues
+Config/testthat/edition: 3
