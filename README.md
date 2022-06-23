@@ -104,7 +104,7 @@ Shiny app is generated based on the ui and server:
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-<img src="vignettes/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
+<img src="man/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
 
 # Auto inputs and auto outputs
 
@@ -148,7 +148,7 @@ values, it should be used with .dates_as_str=FALSE (default).
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-<img src="vignettes/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;" />
+<img src="man/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;" />
 
 # **Additional comments**
 

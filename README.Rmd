@@ -96,7 +96,7 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
-knitr::include_graphics('vignettes/figures/autoinputs.png')
+knitr::include_graphics('man/figures/autoinputs.png')
 ```
 
 # Auto inputs and auto outputs
@@ -136,7 +136,7 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
-knitr::include_graphics('vignettes/figures/autoinputs_outputs.png')
+knitr::include_graphics('man/figures/autoinputs_outputs.png')
 ```
 
 # **Additional comments**

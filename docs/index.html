@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generate shiny dashboard inputs based on dataframe • shinymatic</title>
+<title>Generate Shiny Dashboard Inputs Based on Dataframe • shinymatic</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Generate shiny dashboard inputs based on dataframe">
+<script src="pkgdown.js"></script><meta property="og:title" content="Generate Shiny Dashboard Inputs Based on Dataframe">
 <meta property="og:description" content="Extension of shiny. Allows the automatic generation of inputs
              based on a dataframe. ">
 <meta property="og:image" content="/logo.png">
@@ -58,6 +58,9 @@
       <a href="articles/inputs-multi-data-types.html">Inputs for multiple data types</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -151,7 +154,7 @@
 <p>Shiny app is generated based on the ui and server:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></code></pre></div>
-<p><img src="articles/figures/autoinputs.png" width="70%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/autoinputs.png" width="70%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div class="section level1">
@@ -173,7 +176,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
    <span class="va">data_preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span>
-     <span class="fu">autooutput_df</span><span class="op">(</span>.df<span class="op">=</span><span class="va">customers</span>, .inputs<span class="op">=</span><span class="va">input</span>, .dates_as_str<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+     <span class="fu"><a href="reference/autooutput_df.html">autooutput_df</a></span><span class="op">(</span>.df<span class="op">=</span><span class="va">customers</span>, .inputs<span class="op">=</span><span class="va">input</span>, .dates_as_str<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
    <span class="op">}</span><span class="op">)</span>
    <span class="va">output</span><span class="op">$</span><span class="va">data_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">renderTable</a></span> <span class="op">(</span><span class="op">{</span>
      <span class="fu">data_preds</span><span class="op">(</span><span class="op">)</span>
@@ -182,7 +185,7 @@
 <p>Notice that <strong>autooutput_df()</strong> generates a dataframe with types Date, numeric and character. However, <strong>renderTable()</strong> only outputs numeric and character data types. That’s why <strong>autooutput_df()</strong> includes a <strong>.dates_as_str</strong> parameter. If this function is used to get the correct values, it should be used with .dates_as_str=FALSE (default).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></code></pre></div>
-<p><img src="articles/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level1">
 <h1 id="additional-comments">
