@@ -5,6 +5,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
 <!-- badges: end -->
 
 The goal of **{shinymatic}** :package: is to automatically generate
@@ -105,10 +106,10 @@ shiny::shinyApp(ui = ui, server = server)
 
 <img src="vignettes/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
 
-# Autoinputs for multiple data types all at once
+# Auto inputs and auto outputs
 
 All the inputs can be generated with a single function:
-**shinymatic::autoinputs()**
+**shinymatic::autoinputs()**.
 
 ``` r
 ui <- shiny::fluidPage(fluidRow(
@@ -118,23 +119,36 @@ ui <- shiny::fluidPage(fluidRow(
  ),
  column(3,
         h3('Outputs based on inputs'),
-        verbatimTextOutput(outputId = 'values')
+        tableOutput(outputId = 'data_test')
  )
 ))
+```
 
+Also, a dataframe based on the inputs can be easily generated with
+**shinymatic::autooutput_df()**.
+
+``` r
 server <- function(input, output) {
- output$values <- reactive({
-   paste0(sapply(
-     names(customers),
-     FUN = function(i) paste(i, "=", input[[i]])),
-     collapse = '\n')
- })
+   data_preds <- reactive({
+     autooutput_df(.df=customers, .inputs=input, .dates_as_str=TRUE)
+   })
+   output$data_test <- renderTable ({
+     data_preds()
+   })
 }
+```
 
+Notice that **autooutput_df()** generates a dataframe with types Date,
+numeric and character. However, **renderTable()** only outputs numeric
+and character data types. That’s why **autooutput_df()** includes a
+**.dates_as_str** parameter. If this function is used to get the correct
+values, it should be used with .dates_as_str=FALSE (default).
+
+``` r
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-<img src="vignettes/figures/autoinputs.png" width="70%" style="display: block; margin: auto;" />
+<img src="vignettes/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;" />
 
 # **Additional comments**
 

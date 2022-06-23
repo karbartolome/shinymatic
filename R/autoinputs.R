@@ -2,6 +2,7 @@
 #' @description Automatically genrates inputs for all variables in a dataframe.
 #' @details Based on the columns on a dataframe, this function generates all the inputs. 
 #' @param .df Dataframe with N variables (date, factor or numeric types are supported)
+#' @param .dec_places Decimal places for the numerical sliders
 #' @return Input buttons for all variables. 
 #' @export autoinputs
 #' @examples
@@ -30,13 +31,14 @@
 #' }
 #' shinyApp(ui = ui, server = server)
 #' }
-autoinputs <- function(.df){
+autoinputs <- function(.df, .dec_places){
   vars_num <- names(.df)[sapply(.df, is.numeric)]
   vars_cat <- names(.df)[sapply(.df, is.factor)]
   vars_date <- names(.df)[sapply(.df, class) == "Date"]
   df_inputs <- c() 
   if (length(vars_num>0)){
-    df_inputs = c(df_inputs, shinymatic::autoinput_numerical(.df=.df))
+    df_inputs = c(df_inputs, shinymatic::autoinput_numerical(
+      .df=.df, .dec_places=.dec_places))
   }
   if (length(vars_cat>0)){
     df_inputs = c(df_inputs, shinymatic::autoinput_categorical(.df=.df))

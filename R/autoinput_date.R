@@ -10,7 +10,6 @@
 #' if (interactive()) {
 #' library(shiny)
 #' library(shinymatic)
-#' load('data/customers.rda')
 #' ui <- fluidPage(
 #'   h3('UI (inputs)'),
 #'   autoinput_date(.df = customers),

@@ -11,6 +11,7 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 <!-- badges: start -->
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
 <!-- badges: end -->
 
 The goal of **{shinymatic}** :package: is to automatically generate shiny inputs based on a dataframe.
@@ -98,9 +99,9 @@ shiny::shinyApp(ui = ui, server = server)
 knitr::include_graphics('vignettes/figures/autoinputs.png')
 ```
 
-# Autoinputs for multiple data types all at once
+# Auto inputs and auto outputs
 
-All the inputs can be generated with a single function: **shinymatic::autoinputs()**
+All the inputs can be generated with a single function: **shinymatic::autoinputs()**.
 
 ```{r, eval=FALSE}
 ui <- shiny::fluidPage(fluidRow(
@@ -110,24 +111,32 @@ ui <- shiny::fluidPage(fluidRow(
  ),
  column(3,
         h3('Outputs based on inputs'),
-        verbatimTextOutput(outputId = 'values')
+        tableOutput(outputId = 'data_test')
  )
 ))
+```
 
+Also, a dataframe based on the inputs can be easily generated with **shinymatic::autooutput_df()**.
+
+```{r, eval=FALSE}
 server <- function(input, output) {
- output$values <- reactive({
-   paste0(sapply(
-     names(customers),
-     FUN = function(i) paste(i, "=", input[[i]])),
-     collapse = '\n')
- })
+   data_preds <- reactive({
+     autooutput_df(.df=customers, .inputs=input, .dates_as_str=TRUE)
+   })
+   output$data_test <- renderTable ({
+     data_preds()
+   })
 }
+```
 
+Notice that **autooutput_df()** generates a dataframe with types Date, numeric and character. However, **renderTable()** only outputs numeric and character data types. That's why **autooutput_df()** includes a **.dates_as_str** parameter. If this function is used to get the correct values, it should be used with .dates_as_str=FALSE (default).
+
+```{r, eval=FALSE}
 shiny::shinyApp(ui = ui, server = server)
 ```
 
 ```{r, echo=FALSE, out.width='70%', fig.align='center'}
-knitr::include_graphics('vignettes/figures/autoinputs.png')
+knitr::include_graphics('vignettes/figures/autoinputs_outputs.png')
 ```
 
 # **Additional comments**

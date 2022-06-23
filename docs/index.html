@@ -6,12 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generate shiny dashboard inputs based on dataframe • shinymatic</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -91,6 +85,7 @@
 </h1></div>
 <!-- badges: start -->
 
+<!-- badges: end -->
 <p>The goal of <strong>{shinymatic}</strong> <span class="emoji" data-emoji="package">📦</span> is to automatically generate shiny inputs based on a dataframe.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -106,7 +101,7 @@
 <p>This is a basic example which shows you how to solve a common problem.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinymatic</span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/karbartolome/shinymatic" class="external-link">shinymatic</a></span><span class="op">)</span></code></pre></div>
 <p>For this example, <strong>random customer data</strong> is used. This dataset is included in the package, together with the shinymatic::customers_data() function used to generate the data frame for a number of observations.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">shinymatic</span><span class="fu">::</span><span class="va"><a href="reference/customers.html">customers</a></span></code></pre></div>
@@ -160,9 +155,9 @@
 </div>
 </div>
 <div class="section level1">
-<h1 id="autoinputs-for-multiple-data-types-all-at-once">Autoinputs for multiple data types all at once<a class="anchor" aria-label="anchor" href="#autoinputs-for-multiple-data-types-all-at-once"></a>
+<h1 id="auto-inputs-and-auto-outputs">Auto inputs and auto outputs<a class="anchor" aria-label="anchor" href="#auto-inputs-and-auto-outputs"></a>
 </h1>
-<p>All the inputs can be generated with a single function: <strong>shinymatic::autoinputs()</strong></p>
+<p>All the inputs can be generated with a single function: <strong>shinymatic::autoinputs()</strong>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span>
  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>,
@@ -171,21 +166,23 @@
  <span class="op">)</span>,
  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>,
         <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h3</a></span><span class="op">(</span><span class="st">'Outputs based on inputs'</span><span class="op">)</span>,
-        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">'values'</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">tableOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">'data_test'</span><span class="op">)</span>
  <span class="op">)</span>
-<span class="op">)</span><span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
- <span class="va">output</span><span class="op">$</span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span>
-   <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span>
-     <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">customers</span><span class="op">)</span>,
-     FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="st">"="</span>, <span class="va">input</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
-     collapse <span class="op">=</span> <span class="st">'\n'</span><span class="op">)</span>
- <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></code></pre></div>
-<p><img src="articles/figures/autoinputs.png" width="70%" style="display: block; margin: auto;"></p>
+<span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Also, a dataframe based on the inputs can be easily generated with <strong>shinymatic::autooutput_df()</strong>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+   <span class="va">data_preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span>
+     <span class="fu">autooutput_df</span><span class="op">(</span>.df<span class="op">=</span><span class="va">customers</span>, .inputs<span class="op">=</span><span class="va">input</span>, .dates_as_str<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+   <span class="op">}</span><span class="op">)</span>
+   <span class="va">output</span><span class="op">$</span><span class="va">data_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">renderTable</a></span> <span class="op">(</span><span class="op">{</span>
+     <span class="fu">data_preds</span><span class="op">(</span><span class="op">)</span>
+   <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Notice that <strong>autooutput_df()</strong> generates a dataframe with types Date, numeric and character. However, <strong>renderTable()</strong> only outputs numeric and character data types. That’s why <strong>autooutput_df()</strong> includes a <strong>.dates_as_str</strong> parameter. If this function is used to get the correct values, it should be used with .dates_as_str=FALSE (default).</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></code></pre></div>
+<p><img src="articles/figures/autoinputs_outputs.png" width="70%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level1">
 <h1 id="additional-comments">

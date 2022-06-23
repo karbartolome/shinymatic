@@ -3,6 +3,7 @@
 #' @details Based on the numeric columns on a dataframe, this function generates all the slider inputs. 
 #'          The min/max value on the dataframe is the min/max value on the slider. 
 #' @param .df Dataframe with N variables (one or more should be numeric)
+#' @param .dec_places Decimal places for the numerical sliders
 #' @return SliderInputs for all the numeric variables. 
 #' @export autoinput_numerical
 #' @examples
@@ -10,7 +11,6 @@
 #' if (interactive()) {
 #' library(shiny)
 #' library(shinymatic)
-#' load('data/customers.rda')
 #' ui <- fluidPage(
 #'   h3('UI (inputs)'),
 #'   autoinput_numerical(.df = customers),
