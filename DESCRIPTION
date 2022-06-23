@@ -1,11 +1,11 @@
 Package: shinymatic
-Title: Generate shiny dashboard inputs based on dataframe
+Title: Generate Shiny Dashboard Inputs Based on Dataframe
 Version: 0.0.0.9000
 Authors@R: 
       c(person(given = "Karina",
              family = "Bartolome",
              role = c("aut", "cre"),
-             email = "ejemplo@gmail.com"))
+             email = "karpackages@gmail.com"))
 Description: Extension of shiny. Allows the automatic generation of inputs
              based on a dataframe. 
 License: MIT + file LICENSE
