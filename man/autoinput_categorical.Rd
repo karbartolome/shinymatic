@@ -24,7 +24,6 @@ Based on the factor columns on a dataframe, this function generates all the sele
 if (interactive()) {
 library(shiny)
 library(shinymatic)
-load('data/customers.rda')
 ui <- fluidPage(
   h3('UI (inputs)'),
   autoinput_categorical(.df = customers),

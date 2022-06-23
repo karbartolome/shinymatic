@@ -7,7 +7,7 @@
 #'          
 #' @param .df The original dataframe
 #' @param .inputs Input from the ui
-#' @param .output_format 'df' or 'transposed_df'
+#' @param .dates_as_str dates as character
 #'
 #' @return A dataframe based on the input values generated with 
 #'         shinymatic::autoinputs()
@@ -39,7 +39,6 @@ autooutput_df <- function(.df, .inputs,
                           .dates_as_str=FALSE) {
   vars_tot <- names(.df)
   
-  
   data_output <- lapply(
     X = vars_tot,
     FUN = function(var) {
@@ -48,7 +47,7 @@ autooutput_df <- function(.df, .inputs,
   )
   
   df = data.frame(data_output)
-  names(df) = names(.df)
+  names(df) = vars_tot
   
   if(.dates_as_str==TRUE){
      dates <- sapply(.df, FUN = function(x){class(x) == "Date"})

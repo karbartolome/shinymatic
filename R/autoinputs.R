@@ -31,7 +31,7 @@
 #' }
 #' shinyApp(ui = ui, server = server)
 #' }
-autoinputs <- function(.df, .dec_places){
+autoinputs <- function(.df, .dec_places=0){
   vars_num <- names(.df)[sapply(.df, is.numeric)]
   vars_cat <- names(.df)[sapply(.df, is.factor)]
   vars_date <- names(.df)[sapply(.df, class) == "Date"]

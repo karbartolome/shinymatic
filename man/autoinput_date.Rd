@@ -24,7 +24,6 @@ Based on the date columns on a dataframe, this function generates all the date i
 if (interactive()) {
 library(shiny)
 library(shinymatic)
-load('data/customers.rda')
 ui <- fluidPage(
   h3('UI (inputs)'),
   autoinput_date(.df = customers),

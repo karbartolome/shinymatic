@@ -4,10 +4,12 @@
 \alias{autoinputs}
 \title{autoinputs}
 \usage{
-autoinputs(.df)
+autoinputs(.df, .dec_places = 0)
 }
 \arguments{
 \item{.df}{Dataframe with N variables (date, factor or numeric types are supported)}
+
+\item{.dec_places}{Decimal places for the numerical sliders}
 }
 \value{
 Input buttons for all variables.

@@ -8,6 +8,8 @@ autoinput_numerical(.df, .dec_places = 0)
 }
 \arguments{
 \item{.df}{Dataframe with N variables (one or more should be numeric)}
+
+\item{.dec_places}{Decimal places for the numerical sliders}
 }
 \value{
 SliderInputs for all the numeric variables.
@@ -24,7 +26,6 @@ Based on the numeric columns on a dataframe, this function generates all the sli
 if (interactive()) {
 library(shiny)
 library(shinymatic)
-load('data/customers.rda')
 ui <- fluidPage(
   h3('UI (inputs)'),
   autoinput_numerical(.df = customers),
